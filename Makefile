@@ -1,6 +1,6 @@
 default: travis-dist
 TC:=$(shell pwd)/.travis-compilers
-PATH:=$(TC)/rust/bin:$(TC)/gdc/x86_64-pc-linux-gnu/bin:$(TC)/ghc/bin/ghc:$(PATH)
+PATH:=$(TC)/rust/bin:$(TC)/gdc/x86_64-pc-linux-gnu/bin:$(TC)/ghc/bin:$(PATH)
 
 help: # with thanks to Ben Rady
 	@grep -E '^[0-9a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
