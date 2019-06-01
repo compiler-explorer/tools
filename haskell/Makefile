@@ -1,4 +1,4 @@
-GHC:=../.travis-compilers/ghc/bin/ghc
+GHC:=ghc
 demangle: demangle.hs
 	$(GHC) -package ghc -dynamic demangle.hs -optl-Wl,-rpath,'$$ORIGIN' 
 
