@@ -1,0 +1,4 @@
+- [Matt Godbolt](https://xania.org)
+- [Rubén Rincón](https://github.com/RabsRincon)
+- [Patrick Quist](https://github.com/partouf)
+- [Simon Brand](https://blog.tartanllama.xyz/)
