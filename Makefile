@@ -42,7 +42,7 @@ dist: demanglers  ## Creates a distribution
 		| sed -n -e 's/.*=> \([^ ]*\) .*/\1/p' \
 		| egrep -v '^/lib' \
 		| xargs cp -t out/demanglers/haskell/
-	cd rust && $(CARGO) install --root $(shell pwd)/out/demanglers/rust --force
+	cd rust && $(CARGO) install --path . --root $(shell pwd)/out/demanglers/rust --force
 	echo ${HASH} > out/demanglers/git_hash
 
 travis-dist: dist  ## Creates a distribution as if we were running on travis

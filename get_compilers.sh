@@ -46,7 +46,6 @@ do_rust_install() {
 
 install_new_rust() {
     local NAME=$1
-    
     do_rust_install rust-${NAME}-x86_64-unknown-linux-gnu
 }
 
@@ -56,6 +55,8 @@ fi
 if [[ ! -d ${OPT}/gdc/x86_64-pc-linux-gnu/bin ]]; then
     get_gdc 5.2.0 2.066.1
 fi
-if [[ ! -d ${OPT}/rust/bin ]]; then
-    install_new_rust 1.30.0
+
+GODBOLT_RUST_VERSION=1.35.0
+if ! ("${OPT}"/rust/bin/rustc -V | grep -q -F "${GODBOLT_RUST_VERSION}"); then
+    install_new_rust "${GODBOLT_RUST_VERSION}"
 fi
