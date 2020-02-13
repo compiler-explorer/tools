@@ -56,7 +56,7 @@ if [[ ! -d "${OPT}/gdc/x86_64-pc-linux-gnu/bin" ]]; then
     get_gdc 5.2.0 2.066.1
 fi
 
-GODBOLT_RUST_VERSION=1.40.0
+GODBOLT_RUST_VERSION=1.41.0
 if ! ("${OPT}"/rust/bin/rustc -V | grep -q -F "${GODBOLT_RUST_VERSION}"); then
     install_new_rust "${GODBOLT_RUST_VERSION}"
 fi
