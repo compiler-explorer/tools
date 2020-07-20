@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/mattgodbolt/compiler-explorer-tools.svg?branch=master)](https://travis-ci.org/mattgodbolt/compiler-explorer-tools)
+[![Build Status](https://travis-ci.org/compiler-explorer/tools.svg?branch=master)](https://travis-ci.org/compiler-explorer/tools)
 
 Compiler Explorer Tools
 ------------
