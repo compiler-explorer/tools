@@ -15,7 +15,7 @@ get_ghc() {
     local DIR=ghc-$VER
 
     pushd "${OPT}/tmp"
-    fetch "https://downloads.haskell.org/~ghc/${VER}/ghc-${VER}-x86_64-deb8-linux.tar.xz" | tar Jxf -
+    fetch "https://downloads.haskell.org/~ghc/${VER}/ghc-${VER}-x86_64-deb10-linux.tar.xz" | tar Jxf -
     cd "${OPT}/tmp/ghc-${VER}"
     ./configure --prefix="${OPT}/ghc"
     make install
@@ -50,7 +50,7 @@ install_new_rust() {
 }
 
 if [[ ! -d "${OPT}/ghc/bin" ]]; then
-    get_ghc 8.0.2
+    get_ghc 9.0.1
 fi
 if [[ ! -d "${OPT}/gdc/x86_64-pc-linux-gnu/bin" ]]; then
     get_gdc 5.2.0 2.066.1
