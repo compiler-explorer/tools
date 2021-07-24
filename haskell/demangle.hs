@@ -1,4 +1,4 @@
-import Encoding
+import GHC.Utils.Encoding as Encoding
 import Data.Char
 
 main :: IO ()

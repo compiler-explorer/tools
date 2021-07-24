@@ -1,6 +1,6 @@
-default: gh-dist
+default: dist
 COMPILERS:=$(shell pwd)/.compilers
-PATH:=$(COMPILERS)/rust/bin:$(COMPILERS)/gdc/x86_64-pc-linux-gnu/bin:$(COMPILERS)/ghc/bin:$(PATH)
+PATH:=$(COMPILERS)/rust/bin/:$(PATH)
 
 help: # with thanks to Ben Rady
 	@grep -E '^[0-9a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
@@ -11,22 +11,22 @@ export XZ_OPT=-1 -T 0
 .PHONY: dist demanglers gh-dist
 demanglers: haskell-support d-support rust-support
 d-support: compilers
-	$(MAKE) -C d
+	$(MAKE) -C d GDC=$(COMPILERS)/gdc/x86_64-pc-linux-gnu/bin/gdc
 
 compilers:
 	./get_compilers.sh
 
 haskell-support: compilers
-	$(MAKE) -C haskell
+	$(MAKE) -C haskell GHC=$(COMPILERS)/ghc/bin/ghc
 
-CARGO=cargo
+CARGO=$(COMPILERS)/rust/bin/cargo
 rust/bin/rustfilt: rust/src/main.rs rust/Cargo.lock rust/Cargo.toml compilers
 	cd rust && $(CARGO) build --release
 rust-support: rust/bin/rustfilt
 
 clean:  ## Cleans up everything
 	rm -rf out
-	cd rust && $(CARGO) clean
+	[ -x $(CARGO) ] && cd rust && $(CARGO) clean
 	$(MAKE) -C d clean
 	$(MAKE) -C haskell clean
 
