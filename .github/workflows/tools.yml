@@ -16,6 +16,7 @@ jobs:
       - name: Install compilers
         run: make compilers
       - name: Build
+        id: gh_dist
         run: make gh-dist
       - name: Deploy
         if: github.repository_owner == 'compiler-explorer'
@@ -27,4 +28,4 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           SOURCE_DIR: out/dist-bin
-          DEST_DIR: dist/tools/${{ steps.build_dist.outputs.branch }}
+          DEST_DIR: dist/tools/${{ steps.gh_dist.outputs.branch }}
