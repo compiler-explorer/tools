@@ -1,6 +1,6 @@
 default: travis-dist
-TC:=$(shell pwd)/.travis-compilers
-PATH:=$(TC)/rust/bin:$(TC)/gdc/x86_64-pc-linux-gnu/bin:$(TC)/ghc/bin:$(PATH)
+COMPILERS:=$(shell pwd)/.compilers
+PATH:=$(COMPILERS)/rust/bin:$(COMPILERS)/gdc/x86_64-pc-linux-gnu/bin:$(COMPILERS)/ghc/bin:$(PATH)
 
 help: # with thanks to Ben Rady
 	@grep -E '^[0-9a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
@@ -45,9 +45,9 @@ dist: demanglers  ## Creates a distribution
 	cd rust && $(CARGO) install --path . --root $(shell pwd)/out/demanglers/rust --force
 	echo ${HASH} > out/demanglers/git_hash
 
-travis-dist: dist  ## Creates a distribution as if we were running on travis
+gh-dist: dist  ## Creates a distribution as if we were running on github CI
 	tar -Jcf /tmp/ce-build.tar.xz -C out demanglers
 	rm -rf out/dist-bin
 	mkdir -p out/dist-bin
-	mv /tmp/ce-build.tar.xz out/dist-bin/${TRAVIS_BUILD_NUMBER}.tar.xz
-	echo ${HASH} > out/dist-bin/${TRAVIS_BUILD_NUMBER}.txt
+	mv /tmp/ce-build.tar.xz out/dist-bin/gh-${GITHUB_RUN_NUMBER}.tar.xz
+	echo ${HASH} > out/dist-bin/gh-${GITHUB_RUN_NUMBER}.txt
