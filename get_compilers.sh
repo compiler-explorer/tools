@@ -2,7 +2,7 @@
 
 set -ex
 
-OPT=$(pwd)/.travis-compilers
+OPT=$(pwd)/.compilers
 mkdir -p "${OPT}"
 mkdir -p "${OPT}/tmp"
 

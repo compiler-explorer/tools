@@ -1,4 +1,4 @@
-default: travis-dist
+default: gh-dist
 COMPILERS:=$(shell pwd)/.compilers
 PATH:=$(COMPILERS)/rust/bin:$(COMPILERS)/gdc/x86_64-pc-linux-gnu/bin:$(COMPILERS)/ghc/bin:$(PATH)
 
@@ -8,7 +8,7 @@ help: # with thanks to Ben Rady
 export XZ_OPT=-1 -T 0
 
 .PHONY: clean run haskell-support d-support rust-support compilers
-.PHONY: dist demanglers travis-dist
+.PHONY: dist demanglers gh-dist
 demanglers: haskell-support d-support rust-support
 d-support: compilers
 	$(MAKE) -C d
