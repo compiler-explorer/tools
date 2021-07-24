@@ -7,7 +7,7 @@ newrelic_agent.log
 /out
 *.heapsnapshot
 etc/config/*.local.properties
-.travis-compilers
+.compilers
 /nbproject
 *.bundle*.js
 *.map
