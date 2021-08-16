@@ -60,7 +60,7 @@ if ! ("${OPT}/gdc/x86_64-pc-linux-gnu/bin/gdc" --version | grep -q -F "${CE_GDC_
   get_gdc "${CE_GDC_VER}" 2.066.1
 fi
 
-CE_RUST_VERSION=1.53.0
+CE_RUST_VERSION=1.54.0
 if ! ("${OPT}"/rust/bin/rustc -V | grep -q -F "${CE_RUST_VERSION}"); then
   install_new_rust "${CE_RUST_VERSION}"
 fi
