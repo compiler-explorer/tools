@@ -46,7 +46,7 @@ dist: demanglers  ## Creates a distribution
 	echo ${HASH} > out/demanglers/git_hash
 
 gh-dist: dist  ## Creates a distribution as if we were running on github CI
-	echo "::set-output name=branch::$${GITHUB_REF#refs/heads/}"
+	echo "branch=$${GITHUB_REF#refs/heads/}" >> "${GITHUB_OUTPUT}"
 	tar -Jcf /tmp/ce-build.tar.xz -C out demanglers
 	rm -rf out/dist-bin
 	mkdir -p out/dist-bin
