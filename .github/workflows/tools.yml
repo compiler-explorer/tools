@@ -4,10 +4,10 @@ on: [ push ]
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/cache@v2
+      - uses: actions/checkout@v5
+      - uses: actions/cache@v4
         with:
           path: .compilers
           key: ${{ runner.os }}-compilers-${{ hashFiles('get_compilers.sh') }}
